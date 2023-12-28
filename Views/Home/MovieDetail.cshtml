@@ -1,0 +1,105 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Details</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: black;
+            color: #fff;
+        }
+
+        .img-container {
+            max-width: 100%;
+            overflow: hidden;
+        }
+
+            .img-container img {
+                width: 100%;
+                height: auto;
+                display: block;
+            }
+
+        .detail-container {
+            color: #fff;
+            padding-left: 100px; /* Increased padding for more space */
+        }
+
+        .movie-details {
+            margin-top: 20px;
+        }
+
+        .btn-secondary {
+            background-color: #1abc9c;
+            color: #fff;
+            border: none;
+            padding: 8px 16px; /* Adjusted padding for button */
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            margin-top: 10px; /* Adjusted margin top for better spacing */
+            display: block; /* Display as block to create new line */
+            width: 100%; /* Take up full width */
+        }
+
+            .btn-secondary:hover {
+                background-color: #16a085;
+            }
+
+        .details-wrapper {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+          
+        }
+
+            .details-wrapper p {
+                margin: 5px 0;
+                margin-top: 10px;
+            }
+
+        .details-column {
+            display: flex;
+            flex-direction: column;
+            padding-left: 50px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="img-container">
+                    <img alt="image" src="/Uploads/@Model.MovieImage" class="img-fluid">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="detail-container text-md-end">
+                    <h3>@Model.Title</h3>
+                    <div class="details-wrapper">
+                        <div class="details-column">
+                            <p>Discription: @Model.Director !<br> </p>
+@*                             <p>Genre: @Model.GenreNames  </p>
+ *@                            <p>Release Year: @Model.ReleaseYear</p>
+                            <p>Cast: @Model.Cast</p>
+                        </div>
+                    </div>
+                    <div class="btn-container">
+                        <a href="/Home/Index" class="btn btn-secondary">Back</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,92 @@
+﻿@model MovieStoreMvc.Models.Domain.Movie
+@{
+}
+
+<form class="w-40" asp-action="Add" method="post" enctype="multipart/form-data">
+    <h2 class="pb-10" style="color: white; font-size: 24px; font-family: 'Pro', sans-serif;">Add Movie</h2>
+
+
+    <div class="input-container">
+        <label asp-for="Title" class="w-40" style="color: white; font-size: 24px; font-family: 'Pro', sans-serif;">Title</label>
+        <input type="text" class="input" asp-for="Title">
+    </div>
+    <div class="message-box pd-x-28 error">
+        <span asp-validation-for="Title"> </span>
+    </div>
+
+    <div class="input-container">
+        <label asp-for="Director" class="w-40" style="color: white; font-size: 24px; font-family: 'Pro', sans-serif;">Image</label>
+        <input type="file" asp-for="ImageFile">
+    </div>
+    <div class="message-box pd-x-28 error">
+        <span asp-validation-for="ImageFile"> </span>
+    </div>
+
+    <div class="input-container">
+        <label asp-for="Genres" class="w-40" style="color: white; font-size: 24px; font-family: 'Pro', sans-serif;">Genre</label>
+        <select asp-items="Model.GenreList" class="input" asp-for="Genres" multiple>
+            <option value="">--select--</option>
+        </select>
+    </div>
+    <div class="message-box pd-x-28 error">
+        <span asp-validation-for="Genres"> </span>
+    </div>
+
+    <div class="input-container">
+        <label asp-for="ReleaseYear" class="w-40" style="color: white; font-size: 24px; font-family: 'Pro', sans-serif;">Released Year</label>
+        <input type="text" class="input" asp-for="ReleaseYear">
+    </div>
+    <div class="message-box pd-x-28 error">
+        <span asp-validation-for="ReleaseYear"> </span>
+    </div>
+
+    <div class="input-container">
+        <label asp-for="Cast" class="w-40" style="color: white; font-size: 18px; font-family: 'Pro', sans-serif;">Cast</label>
+        <input type="text" class="input" asp-for="Cast">
+    </div>
+    <div class="message-box pd-x-28 error">
+        <span asp-validation-for="Cast"> </span>
+    </div>
+
+    <div class="input-container">
+        <label asp-for="Director" class="w-40" style="color: white; font-size: 18px; font-family: 'Pro', sans-serif;">Director</label>
+        <input type="text" class="input" asp-for="Director">
+    </div>
+    <div class="message-box pd-x-28 error">
+        <span asp-validation-for="Director"> </span>
+    </div>
+
+
+    @if (TempData["msg"] != null)
+    {
+        <div class="alert mb-1">
+            @TempData["msg"]
+        </div>
+    }
+
+    <div class="input-container">
+        <button class="btn btn-default" type="submit">Save</button>
+        <a class="btn btn-sec" href="/Movie/MovieList">All records</a>
+    </div>
+</form>
+
+<style>
+    body {
+        /* Set the background image for the body */
+        background-image: url('https://i.ibb.co/Wn6Knv3/TR-tr-20231218-popsignuptwoweeks-perspective-alpha-website-large.jpg');
+        /* Adjust background properties */
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed; /* Optional: Keeps the background fixed while scrolling */
+        /* Additional styles for the body */
+        color: #fff; /* Text color */
+        margin: 0; /* Remove default margin */
+        font-family: Arial, sans-serif; /* Optional: Change font */
+
+
+
+
+
+    }
+
+   

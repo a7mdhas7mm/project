@@ -1,0 +1,134 @@
+﻿@model IEnumerable<MovieStoreMvc.Models.Domain.Genre>
+@{
+    ViewData["Title"] = "Genre List";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Genre List</title>
+    <!-- Include Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url("https://i.ibb.co/Yt4kXzH/pexels-photo-7991238.jpg" ) no-repeat center center fixed;
+            background-size: cover;
+            color: #ffffff;
+        }
+
+        .tbl-container {
+            max-width: 800px;
+            margin: 50px auto;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #ffffff;
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #ffffff;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #333333;
+            color: #ffffff;
+        }
+
+        tr:nth-child(even) {
+            background-color: #555555;
+        }
+
+        tr:nth-child(odd) {
+            background-color: #777777;
+        }
+
+        .btn {
+            padding: 6px 12px;
+            margin-right: 5px;
+            color: #ffffff;
+        }
+
+            .btn i {
+                margin-right: 5px;
+            }
+
+        .btn-default {
+            background-color: #212529;
+            border: 1px solid #ffffff;
+        }
+
+            .btn-default:hover {
+                background-color: #555;
+            }
+
+        .btn-danger {
+            background-color: #dc3545;
+            border: 1px solid #dc3545;
+        }
+
+            .btn-danger:hover {
+                background-color: #c82333;
+                border: 1px solid #c82333;
+            }
+
+        .btn-sec {
+            background-color: #6c757d;
+            border: 1px solid #6c757d;
+        }
+
+            .btn-sec:hover {
+                background-color: #5a6268;
+                border: 1px solid #5a6268;
+            }
+
+        .action-btns {
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+    <div class="tbl-container">
+        <h2>Genres</h2>
+
+        @if (TempData["msg"] != null)
+        {
+            <div class="alert alert-success text-center">@TempData["msg"]</div>
+        }
+
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Action</th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.GenreName</td>
+                    <td class="action-btns">
+                        <a href="/Genre/Edit?id=@item.Id" class="btn btn-default"><i class="fa fa-edit"></i>Edit</a>
+                        <a onclick="return window.confirm('Are you sure?')" href="/Genre/Delete?id=@item.Id" class="btn btn-danger"><i class="fa fa-trash"></i>Delete</a>
+                    </td>
+                </tr>
+            }
+        </table>
+        <div class="input-container mt-3 text-center">
+            <a href="/Genre/Add" class="btn btn-sec">Back</a>
+        </div>
+    </div>
+    <!-- Include Bootstrap JS at the end of the body tag for better performance -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

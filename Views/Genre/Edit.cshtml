@@ -1,0 +1,120 @@
+﻿@model MovieStoreMvc.Models.Domain.Genre
+@{
+}               
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Update Genre</title>
+    <!-- Include Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url('https://i.ibb.co/JdsjHXY/night-falls-spooky-gothic-skyscraper-generated-by-ai.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #ffffff;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .w-40 {
+            width: 40%;
+            margin: auto;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #ffffff;
+            text-align: center;
+        }
+
+        .input-container {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #ffffff;
+        }
+
+        .input {
+            width: calc(100% - 20px);
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ffffff;
+            color: #ffffff;
+            background-color: #333333;
+        }
+
+        .message-box {
+            color: #ff0000;
+            margin-bottom: 10px;
+        }
+
+        .alert {
+            background-color: #777777;
+            color: #ffffff;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+
+        .btn {
+            padding: 8px 20px;
+            margin-right: 5px;
+            color: #ffffff;
+            border-radius: 5px;
+        }
+
+        .btn-default {
+            background-color: #212529;
+            border: 1px solid #ffffff;
+        }
+
+            .btn-default:hover {
+                background-color: #555;
+            }
+
+        .btn-sec {
+            background-color: #6c757d;
+            border: 1px solid #6c757d;
+        }
+
+            .btn-sec:hover {
+                background-color: #5a6268;
+                border: 1px solid #5a6268;
+            }
+    </style>
+</head>
+<body>
+    <form class="w-40" asp-action="Update" method="post">
+        <h2 class="pb-10">Update Genre</h2>
+        <input type="hidden" class="input" asp-for="Id">
+
+        <div class="input-container">
+            <label asp-for="GenreName">Genre Name</label>
+            <input type="text" class="input" asp-for="GenreName">
+        </div>
+        <div class="message-box pd-x-28 error">
+            <span asp-validation-for="GenreName"> </span>
+        </div>
+
+        @if (TempData["msg"] != null)
+        {
+            <div class="alert mb-1">
+                @TempData["msg"]
+            </div>
+        }
+
+        <div class="input-container">
+            <button class="btn btn-default" type="submit">Save</button>
+            <a class="btn btn-sec" href="/Genre/GenreList">All records</a>
+        </div>
+    </form>
+    <!-- Include Bootstrap JS at the end of the body tag for better performance -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

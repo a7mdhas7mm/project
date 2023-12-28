@@ -1,0 +1,120 @@
+﻿@model MovieStoreMvc.Models.DTO.MovieListVm
+@{
+    Layout = "_Layout";
+}
+
+<style>
+    /* Body styles */
+    body {
+        font-family: Arial, sans-serif;
+        background-color:black ;
+        background-size: cover;
+        background-repeat: no-repeat;
+        color: #fff; /* Text color for better visibility */
+        /* Add additional styles as needed */
+    }
+
+    /* Style adjustments for search bar and movie cards */
+    .search-bar {
+        margin-top: 20px;
+    }
+
+    .movies {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        margin-top: 20px;
+    }
+
+    .movie-card {
+        width: 300px;
+        background-color: #fff; /* Light background for movie cards */
+        padding: 15px;
+        border-radius: 5px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for cards */
+        cursor: pointer;
+        transition: transform 0.3s ease-in-out;
+        margin-bottom: 20px;
+    }
+
+        .movie-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .movie-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+
+    .movie-info h4 {
+        margin-top: 10px;
+        margin-bottom: 5px;
+    }
+
+    .pagination {
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+    }
+
+        .pagination a {
+            margin: 0 5px;
+        }
+
+            .pagination a.active {
+                background-color: #007bff;
+                color: white;
+            }
+
+    /* Update button color */
+    .btn-black {
+        background-color: #000;
+        color: #fff;
+    }
+</style>
+
+<section class="container">
+    <div class="search-bar">
+        <form method="get" asp-action="Index" class="form-inline">
+            <input type="text" name="term" placeholder="Search here" class="form-control mr-2">
+            <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+            <a class="btn btn-black" href="/Home/Index">All</a>
+        </form>
+    </div>
+
+    <div class="movies row">
+        @foreach (var movie in Model.MovieList)
+        {
+            <div class="col-md-4">
+                <div class="movie-card" onclick="window.location.href='/Home/MovieDetail?movieId=@movie.Id'">
+                    <div class="movie-image">
+                        <img src="/Uploads/@movie.MovieImage" class="img-fluid">
+                    </div>
+                    <div class="movie-info mt-2">
+                        <h4>@movie.Title</h4>
+                        <p>@movie.GenreNames</p>
+                        <p>@movie.ReleaseYear</p>
+                        <!-- Uncomment the lines below if you want to display Cast and Director -->
+                        <!-- <p>Cast: @movie.Cast</p>
+                        <p>Director: @movie.Director</p> -->
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <div class="pagination mt-4">
+        @for (int i = 1; i <= Model.TotalPages; i++)
+        {
+            if (i == Model.CurrentPage)
+            {
+                <a href="/Home/Index?currentPage=@i&term=@Model.Term" class="btn btn-primary active">@i</a>
+            }
+            else
+            {
+                <a href="/Home/Index?currentPage=@i&term=@Model.Term" class="btn btn-secondary">@i</a>
+            }
+        }
+    </div>
+</section>

@@ -1,0 +1,119 @@
+﻿@model MovieStoreMvc.Models.DTO.MovieListVm
+@{
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Movies</title>
+    <!-- Include Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+
+        h2 {
+            color: #fff; /* Change the color here */
+            text-align: center; /* Optional: Center-align the title */
+            font-size: 28px; /* Adjust the font size */
+            font-family: Arial, sans-serif; /* Change the font family */
+            font-weight: bold; /* Optional: Adjust font weight */
+        }
+
+
+
+        body {
+            background-image: url('https://i.ibb.co/Wn6Knv3/TR-tr-20231218-popsignuptwoweeks-perspective-alpha-website-large.jpg');
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        tbl-container {
+            margin: 50px auto;
+            max-width: 100%; /* Allow the table to expand to the maximum width */
+        }
+
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #fff;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        th {
+            background-color: #333;
+            color: #fff;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #ddd;
+        }
+
+        .btn {
+            color: #fff;
+        }
+
+        .btn-default {
+            background-color: #333;
+            border: 1px solid #fff;
+        }
+
+        .btn-danger {
+            background-color: #ff0000;
+            border: 1px solid #fff;
+        }
+
+        .btn-sec {
+            background-color: #333;
+            border: 1px solid #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="tbl-container">
+        <h2>Movies</h2>
+
+        <table>
+            <tr>
+                <th>Title</th>
+                <th>Genre</th>
+                <th>Release Year</th>
+                <th>Image</th>
+                <th>Cast</th>
+                <th>Director</th>
+                <th>Action</th>
+            </tr>
+            @foreach (var item in Model.MovieList)
+            {
+                <tr>
+                    <td>@item.Title</td>
+                    <td>@item.GenreNames</td>
+                    <td>@item.ReleaseYear</td>
+                    <td><img style="max-height:100px; max-width:100px; width:auto; height:auto;" src="/Uploads/@item.MovieImage" /></td>
+                    <td>@item.Cast</td>
+                    <td>@item.Director</td>
+                    <td>
+                        <a href="/Movie/Edit?id=@item.Id" class="btn btn-default"><i class="fa fa-edit"></i></a>
+                        <a onclick="return window.confirm('Are you sure?')" href="/Movie/Delete?id=@item.Id" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                    </td>
+                </tr>
+            }
+        </table>
+
+        <div class="input-container">
+            <a href="/Movie/Add" class="btn btn-sec">Back</a>
+        </div>
+    </div>
+</body>
+</html>
